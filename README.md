@@ -1,5 +1,6 @@
 # BillRift Server
 The back-end of the BillRift app
+
 ## How to run
 - Start the mongo db instance
 ```
@@ -9,12 +10,12 @@ $ mongod
 ```
 $ npm run dev
 ```
+
 ### Models
 Group:
   - id: 
   - name: string
   - userIds: string[]
-
 
 ### Endpoints
 #### Groups
@@ -24,3 +25,4 @@ Group:
 `POST /group/:id/transaction` - add a new transaction to the group.  
 #### Login
 `POST /login` - Log in  
+
