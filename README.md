@@ -23,6 +23,5 @@ Group:
 `GET /group/:id/balances` - Get the list of balances for a group identified by id.  
 `GET /group/:id/transactions` - Get the list of transactions for a group identified by id.  
 `POST /group/:id/transaction` - add a new transaction to the group.  
-#### Login
-`POST /login` - Log in  
-
+#### User
+`POST /user/login` - Log in  
