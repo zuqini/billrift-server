@@ -18,6 +18,23 @@ router.get('/', function(req, res) {
     });
 });
 
+router.post('/', function(req, res) {
+    var group = {
+        name: req.query.name,
+        userIds : [ req.user.googleId ]
+    };
+
+    Group.create(group, function(err, group) {
+        if (err) return res.status(500).json({ status: 500, error: err.toString()});
+        console.log(group);
+
+        User.findOneAndUpdate({googleId: req.user.googleId}, {$push: { groupIds : group.id }}, {upsert: true}, function(err) {
+            if (err) return res.status(500).json({ status: 500, error: err.toString()});
+            res.json({});
+        });
+    });
+});
+
 // router.get('/:id/transactions', function (req, res) {
 //     var groupId = req.params.id;
 //     var query = {
