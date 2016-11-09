@@ -35,8 +35,8 @@ router.get('/', function(req, res) {
 router.get('/:id/users', function (req, res) {
     var groupId = req.params.id;
     Group.findOne({id: groupId}, function(err, group) {
-        if (!err) {
-            var userIds = group.userIds;
+        if (!err && group) {
+            var userIds = group.userIds || [];
             var query = {
                 id: { $in: userIds }
             };
@@ -47,6 +47,8 @@ router.get('/:id/users', function (req, res) {
                     res.status(500).send({error: err});
                 }
             });
+        } else if (!err) {
+            res.sendStatus(404);
         } else {
             res.status(500).send({error: err});
         }
