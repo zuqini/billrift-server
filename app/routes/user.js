@@ -15,12 +15,12 @@ router.get('/', function(req, res) {
 
 router.post('/login', function(req, res) {
     var user = {
-        name : req.query.name,
-        email : req.query.email,
-        googleId : req.query.googleId,
+        name : req.user.name,
+        email : req.user.email,
+        googleId : req.user.googleId,
     };
 
-    User.findOneAndUpdate({googleId: req.query.googleId}, user,
+    User.findOneAndUpdate({googleId: req.user.googleId}, user,
         {upsert: true, new: true, setDefaultsOnInsert: true}, function(err){
         if (err) return res.send(500, { error: err });
         return res.json(user);
