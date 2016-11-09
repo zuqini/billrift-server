@@ -7,7 +7,7 @@ var User = require('../models/user');
 router.get('/', function(req, res) {
     User.find({}, function(err, users) {
         if (err) res.status(500).json({ status: 500, error: err.toString()});
-        res.json(users);
+        res.status(200).json(users);
     });
 });
 
@@ -22,7 +22,7 @@ router.post('/login', function(req, res) {
         {upsert: true, new: true, setDefaultsOnInsert: true}, function(err) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
         console.log(user);
-        return res.json({});
+        return res.status(200).json({});
     });
 });
 
