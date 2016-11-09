@@ -25,10 +25,10 @@ User:
 
 ### Endpoints
 #### Groups
-`GET /groups?` - Get the list of group objects. 
+`GET /groups?` - Get the list of group objects.  
 `GET /group/:id/balances` - Get the list of balances for a group identified by id.  
 `GET /group/:id/transactions` - Get the list of transactions for a group identified by id.  
-`GET /group/:id/users` - Get the lits of users from a group identified by id
+`GET /group/:id/users` - Get the lits of users from a group identified by id  
 `POST /group/:id/transaction` - add a new transaction to the group.  
 #### User
 `POST /user/login` - Log in  
