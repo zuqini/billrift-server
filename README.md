@@ -26,7 +26,13 @@ Transaction:
   - id : Number  
   - userFromId : String  
   - userToId :  String  
-  - amount : Number  
+  - amount : Number 
+  
+Balance (Only as contract with application, doesn't have to be implemented as persistent model on backend):
+  - from : String
+  - to : String
+  - amount : Number
+  - groupId : Number
   
 ### Endpoints 
 pass in idToken as query to all of the endpoints to authenticate  
