@@ -79,7 +79,8 @@ router.post('/:id/transaction', function(req, res) {
     var amount = req.body.amount;
 
     if (!groupId || !userFromId || !userToId || !amount) {
-        res.sendStatus(400);
+        res.status(400).send("Bad parameters");
+	return;
     }
 
     Group.findOne({id: groupId}, function(err, group) {
@@ -92,7 +93,7 @@ router.post('/:id/transaction', function(req, res) {
                 }
             });
         } else if (!err) {
-            res.sendStatus(404);
+            res.status(404).send("Group not found");
         } else {
             res.status(500).send({error: err});
         }
