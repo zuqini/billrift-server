@@ -21,4 +21,39 @@ router.get('/', function(req, res) {
     });
 });
 
+// router.get('/:id/transactions', function (req, res) {
+//     var groupId = req.params.id;
+//     var query = {
+//         groupId: groupId
+//     }
+//     Transaction.find(query, function(err, transactions) {
+//         if (!err) {
+//             res.json(transactions);
+//         } else {
+//             res.status(500).send({error: err});
+//         }
+//     });
+// });
+
+router.get('/:id/users', function (req, res) {
+    var groupId = req.params.id;
+    Group.findOne({id: groupId}, function(err, group) {
+        if (!err) {
+            var userIds = group.userIds;
+            var query = {
+                id: { $in: userIds }
+            };
+            User.find(query, function(err, users) {
+                if (!err) {
+                    res.json(users);
+                } else {
+                    res.status(500).send({error: err});
+                }
+            });
+        } else {
+            res.status(500).send({error: err});
+        }
+    });
+})
+
 module.exports = router;
