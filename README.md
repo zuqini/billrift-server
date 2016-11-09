@@ -35,7 +35,7 @@ Balance (Only as contract with application, doesn't have to be implemented as pe
   - groupId : Number
   
 ### Endpoints 
-pass in idToken as query to all of the endpoints to authenticate  
+pass in idToken as `authToken=<token>` in header to all of the endpoints to authenticate  
 #### Groups
 `GET /groups` - Get the list of group objects. --DONE  
 `POST /group?name={groupName}` - add a new group to the user --DONE  
