@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var auth = require('./app/middlewares/auth');
 
 var group = require('./app/routes/group');
+var groups = require('./app/routes/groups');
 var user = require('./app/routes/user');
 
 var db = require('./config/db');
@@ -23,5 +24,6 @@ require('./app/routes')(app);
 
 app.use('/user', auth, user);
 app.use('/group', auth, group);
+app.use('/groups', auth, groups);
 
 module.exports = app;
