@@ -36,6 +36,7 @@ Balance (Only as contract with application, doesn't have to be implemented as pe
   
 ### Endpoints 
 pass in idToken as `authToken=<token>` in header to all of the endpoints to authenticate  
+all post "query parameters" are actually parameters in request body
 #### Groups
 `GET /groups` - Get the list of group objects. --DONE  
 `POST /group?name={groupName}` - add a new group to the user --DONE  
