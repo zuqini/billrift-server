@@ -5,7 +5,8 @@ var transactionSchema = new Schema({
     id: Number,
     userFromId: String,
     userToId: String,
-    amount: Number
+    amount: Number,
+    groupId: Number
 });
 
 var Transaction = mongoose.model('Transaction', transactionSchema);

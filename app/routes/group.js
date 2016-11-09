@@ -72,18 +72,23 @@ router.post('/:id/user', function (req, res) {
     });
 });
 
-// router.post('/:id/transaction', function(req, res) {
-//     var groupId = req.params.id;
-//     var userFromId = req.body.userFromId;
-//     var userToId = req.body.userToId;
-//     var amount = req.body.amount;
-//     Transaction.insert({userFromId, userToId, amount, groupId}, {}, function(err, transaction) {
-//         if (!err) {
-//             res.status(200).send({transaction});
-//         } else {
-//             res.status(500).send({error: err});
-//         }
-//     });
-// });
+router.post('/:id/transaction', function(req, res) {
+    var groupId = req.params.id;
+    var userFromId = req.body.userFromId;
+    var userToId = req.body.userToId;
+    var amount = req.body.amount;
+
+    if (!groupId || !userFromId || !userToId || !amount) {
+        res.sendStatus(400);
+    }
+
+    Transaction.insert({userFromId, userToId, amount, groupId}, {}, function(err, transaction) {
+        if (!err) {
+            res.status(200).send({transaction});
+        } else {
+            res.status(500).send({error: err});
+        }
+    });
+});
 
 module.exports = router;
