@@ -28,9 +28,10 @@ Transaction:
   - userToId :  String  
   - amount : Number  
   
-### Endpoints  
+### Endpoints 
+pass in idToken as query to all of the endpoints to authenticate  
 #### Groups
-`GET /groups?` - Get the list of group objects.  
+`GET /groups` - Get the list of group objects. --DONE  
 `GET /group/:id/balances` - Get the list of balances for a group identified by id.  
 `GET /group/:id/transactions` - Get the list of transactions for a group identified by id.  
 `GET /group/:id/users` - Get the lits of users from a group identified by id  
@@ -38,4 +39,4 @@ Transaction:
 #### User
 `GET /user` - test API to return all users --DONE  
 `POST /user/login` - log in --DONE  
-`POST /user/group` - add a new group to the user  
+`POST /user/group?name={groupName}` - add a new group to the user --DONE    
