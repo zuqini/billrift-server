@@ -23,19 +23,25 @@ router.post('/', function(req, res) {
     });
 });
 
-// router.get('/:id/transactions', function (req, res) {
-//     var groupId = req.params.id;
-//     var query = {
-//         groupId: groupId
-//     }
-//     Transaction.find(query, function(err, transactions) {
-//         if (!err) {
-//             res.json(transactions);
-//         } else {
-//             res.status(500).send({error: err});
-//         }
-//     });
-// });
+router.get('/:id/transactions', function (req, res) {
+    var groupId = req.params.id;
+
+    if (!groupId) {
+	res.status(400).send("Bad parameters");
+	return;
+    }
+
+    var query = {
+        groupId: groupId
+    }
+    Transaction.find(query, function(err, transactions) {
+        if (!err) {
+            res.json(transactions);
+        } else {
+            res.status(500).send({error: err});
+        }
+    });
+});
 
 router.get('/:id/users', function (req, res) {
     var groupId = req.params.id;
