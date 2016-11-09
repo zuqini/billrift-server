@@ -4,6 +4,7 @@ var router = express.Router();
 
 var Group = require('../models/group');
 var User = require('../models/user');
+var Transaction = require('../models/transaction');
 
 router.post('/', function(req, res) {
     var group = {
