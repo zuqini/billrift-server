@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
         };
         Group.find(query, function(err, groups) {
             if (err) return res.status(500).json({ status: 500, error: err.toString()});
-            res.json(groups);
+            res.status(200).json(groups);
         });
     });
 });
