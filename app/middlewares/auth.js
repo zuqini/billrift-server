@@ -3,8 +3,7 @@ var clientId = require('../../config/files/local-auth').clientId;
 
 module.exports = function(req, res, next) {
     if (!req.query || !req.query.idToken) {
-        console.log('No auth token provided.');
-        res.redirect('/403');
+        res.status(403).json({ status: 403, error: 'No auth token provided.' });
         return;
     }
 
@@ -12,7 +11,7 @@ module.exports = function(req, res, next) {
     verifier.verify(idToken, clientId, function (err, tokenInfo) {
         if (err) {
             console.log(err);
-            res.redirect('/403');
+            res.status(403).json({ status: 403, error: err.toString()});
             return;
         }
         req.user = {

@@ -6,18 +6,15 @@ var Group = require('../models/group');
 var User = require('../models/user');
 
 router.get('/', function(req, res) {
-    var googleId = req.user.googleId;
-    User.findOne({ googleId: googleId }, function(err, user) {
-        if (!err) {
-            var query = {
-                id: { $in: user.groupIds }
-            };
-            Group.find(query, function(err, groups) {
-                if (!err) {
-                    res.json(groups);
-                }
-            });
-        }
+    User.findOne({ googleId: req.user.googleId }, function(err, user) {
+        if (err) return res.status(500).json({ status: 500, error: err.toString()});
+        var query = {
+            id: { $in: user.groupIds }
+        };
+        Group.find(query, function(err, groups) {
+            if (err) return res.status(500).json({ status: 500, error: err.toString()});
+            res.json(groups);
+        });
     });
 });
 

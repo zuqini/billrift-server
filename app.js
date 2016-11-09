@@ -23,8 +23,5 @@ require('./app/routes')(app);
 
 app.use('/user', auth, user);
 app.use('/group', auth, group);
-app.use('/403', function(req, res) {
-    res.json({ error: '403 FORBIDDEN' });
-});
 
 module.exports = app;
