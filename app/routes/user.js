@@ -39,7 +39,6 @@ router.post('/group', function(req, res) {
 
         User.findOneAndUpdate({googleId: req.user.googleId}, {$push: { groupIds : group.id }}, {upsert: true}, function(err) {
             if (err) return res.status(500).json({ status: 500, error: err.toString()});
-            console.log(user);
             res.json({});
         });
     });
