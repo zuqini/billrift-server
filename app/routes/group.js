@@ -5,15 +5,19 @@ var router = express.Router();
 var Group = require('../models/group');
 var User = require('../models/user');
 
-router.get('/', function(req, res) {
-    User.findOne({ googleId: req.user.googleId }, function(err, user) {
+router.post('/', function(req, res) {
+    var group = {
+        name: req.query.name,
+        userIds : [ req.user.googleId ]
+    };
+
+    Group.create(group, function(err, group) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
-        var query = {
-            id: { $in: user.groupIds }
-        };
-        Group.find(query, function(err, groups) {
+        console.log(group);
+
+        User.findOneAndUpdate({googleId: req.user.googleId}, {$push: { groupIds : group.id }}, {upsert: true}, function(err) {
             if (err) return res.status(500).json({ status: 500, error: err.toString()});
-            res.json(groups);
+            res.json({});
         });
     });
 });
@@ -35,23 +39,35 @@ router.get('/', function(req, res) {
 router.get('/:id/users', function (req, res) {
     var groupId = req.params.id;
     Group.findOne({id: groupId}, function(err, group) {
-        if (!err && group) {
-            var userIds = group.userIds || [];
-            var query = {
-                id: { $in: userIds }
-            };
-            User.find(query, function(err, users) {
-                if (!err) {
-                    res.json(users);
-                } else {
-                    res.status(500).send({error: err});
-                }
+        if (err) return res.status(500).json({status: 500, error: err.toString()});
+        var userIds = group.userIds;
+        var query = {
+            googleId: {$in: userIds}
+        };
+        User.find(query, function (err, users) {
+            if (err) return res.status(500).json({ status: 500, error: err.toString()});
+            res.json(users);
+        });
+    });
+});
+
+router.post('/:id/user', function (req, res) {
+    var groupId = req.params.id;
+    var email = req.query.email;
+    User.findOne({email: email}, function(err, user) {
+        if (err) return res.status(500).json({ status: 500, error: err.toString()});
+        if (!user) return res.status(404).json({ status: 404, error: 'User not found.'});
+        var googleId = user.googleId;
+        Group.findOne({id: groupId}, function(err, group) {
+            if (err) return res.status(500).json({ status: 500, error: err.toString()});
+            if (!group) return res.status(404).json({ status: 404, error: 'Group not found.'});
+            if (_.indexOf(group.userIds, googleId) !== -1) return res.status(500).json({ status: 500, error: "User is already in group."});
+
+            Group.update({id: groupId}, {$push: {userIds: googleId}}, function(err, group) {
+                if (err) return res.status(500).json({ status: 500, error: err.toString()});
+                res.json({});
             });
-        } else if (!err) {
-            res.sendStatus(404);
-        } else {
-            res.status(500).send({error: err});
-        }
+        });
     });
 });
 
