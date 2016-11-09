@@ -62,10 +62,15 @@ router.post('/:id/user', function (req, res) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
         if (!user) return res.status(404).json({ status: 404, error: 'User not found.'});
         var googleId = user.googleId;
-        Group.findOneAndUpdate({id: groupId}, {$push: {userIds: googleId}}, function(err, group) {
+        Group.findOne({id: groupId}, function(err, group) {
             if (err) return res.status(500).json({ status: 500, error: err.toString()});
-            console.log(group);
-            res.json({});
+            if (!group) return res.status(404).json({ status: 404, error: 'Group not found.'});
+            if (_.indexOf(group.userIds, googleId) !== -1) return res.status(500).json({ status: 500, error: "User is already in group."});
+
+            Group.update({id: groupId}, {$push: {userIds: googleId}}, function(err, group) {
+                if (err) return res.status(500).json({ status: 500, error: err.toString()});
+                res.json({});
+            });
         });
     });
 });
