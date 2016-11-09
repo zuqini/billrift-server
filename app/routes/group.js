@@ -82,9 +82,17 @@ router.post('/:id/transaction', function(req, res) {
         res.sendStatus(400);
     }
 
-    Transaction.insert({userFromId, userToId, amount, groupId}, {}, function(err, transaction) {
-        if (!err) {
-            res.status(200).send({transaction});
+    Group.findOne({id: groupId}, function(err, group) {
+        if (!err && group) {
+            Transaction.insert({userFromId, userToId, amount, groupId}, {}, function(err, transaction) {
+                if (!err) {
+                    res.status(200).send({transaction});
+                } else {
+                    res.status(500).send({error: err});
+                }
+            });
+        } else if (!err) {
+            res.sendStatus(404);
         } else {
             res.status(500).send({error: err});
         }
