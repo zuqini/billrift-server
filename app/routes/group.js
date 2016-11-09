@@ -23,6 +23,10 @@ router.post('/', function(req, res) {
     });
 });
 
+
+/*
+ *  Get the list of transactions for a group identified by id
+ */
 router.get('/:id/transactions', function (req, res) {
     var groupId = req.params.id;
 
@@ -43,6 +47,9 @@ router.get('/:id/transactions', function (req, res) {
     });
 });
 
+/*
+ *  Get the list of users for a group identified by id 
+ */
 router.get('/:id/users', function (req, res) {
     var groupId = req.params.id;
     Group.findOne({id: groupId}, function(err, group) {
@@ -78,6 +85,9 @@ router.post('/:id/user', function (req, res) {
     });
 });
 
+/*
+ *  Add a new transaction to the group
+ */
 router.post('/:id/transaction', function(req, res) {
     var groupId = req.params.id;
     var userFromId = req.body.userFromId;
