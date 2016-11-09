@@ -18,12 +18,17 @@ Group:
   - userIds : Array
   
 User:
-  - id : Number,
   - name : String,
-  - googleID : String,
+  - googleId : String,
   - groupIds: Array
 
-### Endpoints
+Transaction:  
+  - id : Number  
+  - userFromId : String  
+  - userToId :  String  
+  - amount : Number  
+  
+### Endpoints  
 #### Groups
 `GET /groups?` - Get the list of group objects.  
 `GET /group/:id/balances` - Get the list of balances for a group identified by id.  
@@ -31,4 +36,6 @@ User:
 `GET /group/:id/users` - Get the lits of users from a group identified by id  
 `POST /group/:id/transaction` - add a new transaction to the group.  
 #### User
-`POST /user/login` - Log in  
+`GET /user` - test API to return all users --DONE  
+`POST /user/login` - log in --DONE  
+`POST /user/group` - add a new group to the user  
