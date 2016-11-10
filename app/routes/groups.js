@@ -30,6 +30,8 @@ router.get('/', function(req, res) {
                         }
                     });
                     return {
+                        _id: group._id,
+                        __v: group.__v,
                         balance: balance,
                         id: group.id,
                         name: group.name,
