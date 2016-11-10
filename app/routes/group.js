@@ -5,6 +5,7 @@ var router = express.Router();
 var Group = require('../models/group');
 var User = require('../models/user');
 var Transaction = require('../models/transaction');
+var Helper = require('../helper');
 
 router.post('/', function(req, res) {
     var name = req.body.name;
@@ -121,6 +122,48 @@ router.post('/:id/transaction', function(req, res) {
                 res.status(500).json({error: err});
             }
         });
+    });
+});
+
+router.get('/:id/balances', function (req, res) {
+    var groupId = req.params.id;
+
+    if (!groupId) {
+        return res.status(400).json({ status: 400, error: "Bad parameters."});
+    }
+
+    var query = {
+        groupId: groupId
+    };
+    Transaction.find(query, function(err, transactions) {
+        if (err) return res.status(500).json({ status: 500, error: err.toString()});
+        
+        var result = Helper.buildMatrix(transactions);
+        var matrix = result.matrix;
+        var indices = result.indices;
+        
+        Helper.directMatrix(matrix);
+        Helper.optimizeMatrix(matrix);
+        
+        var balances;
+        for (var i = 0; i < matrix.length; i++) {
+            for (var j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] !== 0) {
+                    var fromId = _.findKey(indices, i);
+                    var toId = _.findKey(indices, j);
+                    var amount = matrix[i][j];
+                    
+                    balances.push({
+                            "from": fromId,
+                            "to": toId,
+                            "amount": amount,
+                            "groupId": groupId
+                        });
+                }
+            }
+        }
+        
+        res.json(balances);
     });
 });
 
