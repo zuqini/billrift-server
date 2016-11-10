@@ -41,10 +41,10 @@ all post "query parameters" are actually parameters in request body
 `GET /groups` - Get the list of group objects. --DONE  
 `POST /group?name={groupName}` - add a new group to the user --DONE  
 `GET /group/:id/balances` - Get the list of balances for a group identified by id. --BLOCKED TOO HARD  
-`GET /group/:id/transactions` - Get the list of transactions for a group identified by id. --ZAL INPROGRESS  
+`GET /group/:id/transactions` - Get the list of transactions for a group identified by id. --DONE  
 `GET /group/:id/users` - Get the lits of users from a group identified by id --DONE  
 `POST /group/:id/user?email={email}` - add a user to a group --DONE  
-`POST /group/:id/transaction` - add a new transaction to the group. --ZAL INPROGRESS  
+`POST /group/:id/transaction` - add a new transaction to the group. --DONE  
 #### User
 `GET /user` - test API to return all users --DONE  
 `POST /user/login` - log in --DONE
