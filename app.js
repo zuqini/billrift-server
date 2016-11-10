@@ -10,9 +10,7 @@ var group = require('./app/routes/group');
 var groups = require('./app/routes/groups');
 var user = require('./app/routes/user');
 
-var db = require('./config/db');
-
-mongoose.connect(db.url);
+mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.json());
 
