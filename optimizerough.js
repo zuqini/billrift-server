@@ -17,6 +17,28 @@ var print = function(matrix) {
 
 print(matrix);
 
+var singlefyMatrix = function(matrix) {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            let ij = matrix[i][j];
+            let ji = matrix[j][i];
+            if (ij > 0 && ji > 0) {
+                if (ij > ji) {
+                    matrix[i][j] -= matrix[j][i];
+                    matrix[j][i] = 0;
+                } else {
+                    matrix[j][i] -= matrix[i][j];
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+};
+
+singlefyMatrix(matrix);
+console.log('');
+print(matrix);
+
 var hasDouble = function(matrix, i) {
     for (let j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j] !== 0) {
@@ -40,7 +62,7 @@ var addDebt = function(matrix, i, j, amount) {
     if (matrix[j][i] > 0) {
         matrix[j][i] -= amount;
         if (matrix[j][i] < 0) {
-            matrix[i][j] += matrix[j][i];
+            matrix[i][j] += Math.abs(matrix[j][i]);
             matrix[j][i] = 0;
         }
     } else {
