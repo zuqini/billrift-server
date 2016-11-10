@@ -75,9 +75,8 @@ var addDebt = function(matrix, i, j, amount) {
 
 // Make graph only two levels deep
 var optimize = function(matrix) {
-    var timeout = 100;
     for (let i = 0; i < matrix.length; i++) {
-        while (hasDouble(matrix, i).has && timeout--) {
+        while (hasDouble(matrix, i).has) {
             let obj = hasDouble(matrix, i);
             console.log(i, obj.j, obj.k, matrix[i][obj.j], matrix[obj.j][obj.k]);
             let j = obj.j;
