@@ -1,5 +1,5 @@
 var verifier = require('google-id-token-verifier');
-var clientId = require('../../config/files/local-auth').clientId;
+var clientId = require('../../config/auth').clientId;
 
 module.exports = function(req, res, next) {
     if (!req.headers['auth-token']) {

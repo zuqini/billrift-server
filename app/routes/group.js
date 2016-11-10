@@ -92,6 +92,7 @@ router.post('/:id/transaction', function(req, res) {
     var userFromId = req.body.userFromId;
     var userToId = req.body.userToId;
     var amount = req.body.amount;
+    var title = req.body.title;
 
     if (!groupId || !userFromId || !userToId || !amount) {
         return res.status(400).json({ status: 400, error: "Bad parameters."});
@@ -111,7 +112,8 @@ router.post('/:id/transaction', function(req, res) {
             userFromId: userFromId,
             userToId: userToId,
             amount: amount,
-            groupId: groupId
+            groupId: groupId,
+            title: title
         }, function(err, transaction) {
             if (!err) {
                 res.status(200).json({transaction: transaction});
