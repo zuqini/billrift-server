@@ -137,7 +137,8 @@ router.get('/:id/balances', function (req, res) {
     };
     Transaction.find(query, function(err, transactions) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
-        
+	if(!transactions.length) return res.status(200).json([]);
+
         var result = Helper.buildMatrix(transactions);
         var matrix = result.matrix;
         var indices = result.indices;
