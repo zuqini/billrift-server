@@ -1,7 +1,7 @@
 var Helper = {
     buildMatrix: function(transactions) {
-        var matrix;
-        var indexes;
+        var matrix = {};
+        var indexes = {};
         var id = 0;
         for (var i = 0; i < transactions.length; i++) {
             if (!indexes[transactions[i].userFromId]) indexes[transactions[i].userFromId] = id++;
