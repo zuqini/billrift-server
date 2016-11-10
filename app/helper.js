@@ -1,14 +1,14 @@
 var Helper = {
     buildMatrix: function(transactions) {
         var matrix = {};
-        var indexes = {};
+        var indices = {};
         var id = 0;
         for (var i = 0; i < transactions.length; i++) {
-            if (!indexes[transactions[i].userFromId]) indexes[transactions[i].userFromId] = id++;
-            if (!indexes[transactions[i].userToId]) indexes[transactions[i].userToId] = id++;
+            if (!indices[transactions[i].userFromId]) indices[transactions[i].userFromId] = id++;
+            if (!indices[transactions[i].userToId]) indices[transactions[i].userToId] = id++;
             
-            var fromId = indexes[transactions[i].userFromId];
-            var toId = indexes[transactions[i].userToId];
+            var fromId = indices[transactions[i].userFromId];
+            var toId = indices[transactions[i].userToId];
             
             matrix[fromId] = matrix[fromId] || [];
 	    matrix[fromId][toId] = matrix[fromId][toId] || 0;
