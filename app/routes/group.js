@@ -97,7 +97,7 @@ router.post('/:id/transaction', function(req, res) {
         return res.status(400).json({ status: 400, error: "Bad parameters."});
     }
 
-    if (userFromId.localeCompare(userToId) === 0) {
+    if (userFromId.localeCompare(userToId) !== 0) {
         return res.status(400).json({ status: 400, error: "Cannot have a transaction with the same user."});
     }
 
