@@ -13,7 +13,7 @@ var Helper = {
             matrix[fromId][toId] += transactions[i].amount;
         }
         
-        return {matrix, indexes};
+        return {matrix, indices};
     },
     
     directMatrix: function(matrix) {
@@ -66,7 +66,7 @@ var Helper = {
     },
     
     optimizeMatrix: function(matrix) {
-        for (let i = 0; i < matrix.length; i++) {
+        for (var i = 0; i < matrix.length; i++) {
             while (true) {
                 var obj = this.hasDouble(matrix, i);
                 if (!obj.has) break;
