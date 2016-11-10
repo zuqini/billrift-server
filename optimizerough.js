@@ -17,6 +17,7 @@ var print = function(matrix) {
 
 print(matrix);
 
+// Two nodes should only have a single edge between them
 var singlefyMatrix = function(matrix) {
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
@@ -39,6 +40,7 @@ singlefyMatrix(matrix);
 console.log('');
 print(matrix);
 
+// Check if a node is the start of a path of length 2
 var hasDouble = function(matrix, i) {
     for (let j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j] !== 0) {
@@ -58,6 +60,7 @@ var hasDouble = function(matrix, i) {
     };
 };
 
+// Add a debt between person i and person j
 var addDebt = function(matrix, i, j, amount) {
     if (matrix[j][i] > 0) {
         matrix[j][i] -= amount;
@@ -70,6 +73,7 @@ var addDebt = function(matrix, i, j, amount) {
     }
 };
 
+// Make graph only two levels deep
 var optimize = function(matrix) {
     var timeout = 100;
     for (let i = 0; i < matrix.length; i++) {
