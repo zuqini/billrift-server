@@ -29,7 +29,12 @@ router.get('/', function(req, res) {
                             balance -= transaction.amount;
                         }
                     });
-                    return {balance:balance, group: group} ;
+                    return {
+                        balance: balance,
+                        id: group.id,
+                        name: group.name,
+                        userIds: group.userIds
+                    } ;
                 });
 
                 res.status(200).json(groupsWithBalances);
