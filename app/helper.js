@@ -10,8 +10,16 @@ var Helper = {
             var fromId = indexes[transactions[i].userFromId];
             var toId = indexes[transactions[i].userToId];
             
+            matrix[fromId] = matrix[fromId] || [];
+	    matrix[fromId][toId] = matrix[fromId][toId] || 0;
             matrix[fromId][toId] += transactions[i].amount;
         }
+
+	for (i = 0; i < matrix.length; i++) {
+	    for (var j = 0; j < matrix[i].length; j++) {
+		matrix[i][j] = matrix[i][j] || 0;
+	    }
+	}
         
         return {matrix, indices};
     },
