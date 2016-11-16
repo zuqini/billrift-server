@@ -2,10 +2,10 @@ var Helper = {
     buildMatrix: function(transactions) {
         var matrix = {};
         var indices = {};
-        var id = -1;
+        var id = 0;
         for (var i = 0; i < transactions.length; i++) {
-            if (!indices[transactions[i].userFromId]) indices[transactions[i].userFromId] = id++;
-            if (!indices[transactions[i].userToId]) indices[transactions[i].userToId] = id++;
+            if (indices[transactions[i].userFromId] === undefined) indices[transactions[i].userFromId] = id++;
+            if (indices[transactions[i].userToId] === undefined) indices[transactions[i].userToId] = id++;
 
             var fromId = indices[transactions[i].userFromId];
             var toId = indices[transactions[i].userToId];
@@ -17,7 +17,7 @@ var Helper = {
 
     	for (i = 0; i < matrix.length; i++) {
     	    for (var j = 0; j < matrix[i].length; j++) {
-    		matrix[i][j] = matrix[i][j] || 0;
+    		    matrix[i][j] = matrix[i][j] || 0;
     	    }
     	}
 
