@@ -1,6 +1,6 @@
 var Helper = {
     buildMatrix: function(transactions) {
-        var matrix = {};
+        var matrix = [];
         var indices = {};
         var id = 0;
         for (var i = 0; i < transactions.length; i++) {
@@ -16,13 +16,8 @@ var Helper = {
         }
 
     	for (i = 0; i < matrix.length; i++) {
-    	    for (var j = 0; j < matrix[i].length; j++) {
-                console.log('ini 0', matrix[i][j]);
-    		    // matrix[i][j] = matrix[i][j] || 0;
-                if (!matrix[i][j] || matrix[i][j] <= 0) {
-                    console.log('set to 0');
-                    matrix[i][j] = 0;
-                }
+    	    for (var j = 0; j < matrix.length; j++) {
+    		    matrix[i][j] = matrix[i][j] || 0;
     	    }
     	}
 
