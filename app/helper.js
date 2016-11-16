@@ -2,7 +2,7 @@ var Helper = {
     buildMatrix: function(transactions) {
         var matrix = {};
         var indices = {};
-        var id = 0;
+        var id = -1;
         for (var i = 0; i < transactions.length; i++) {
             if (!indices[transactions[i].userFromId]) indices[transactions[i].userFromId] = id++;
             if (!indices[transactions[i].userToId]) indices[transactions[i].userToId] = id++;
