@@ -20,6 +20,7 @@ var Helper = {
 
     	for (i = 0; i < length; i++) {
     	    for (var j = 0; j < length; j++) {
+                matrix[i] = matrix[i] || [];
     		    matrix[i][j] = matrix[i][j] || 0;
     	    }
     	}
