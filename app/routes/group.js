@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
 });
 
 /*
- *  Get the list of users for a group identified by id 
+ *  Get the list of users for a group identified by id
  */
 router.get('/:id/users', function (req, res) {
     var groupId = req.params.id;
@@ -142,18 +142,19 @@ router.get('/:id/balances', function (req, res) {
         var result = Helper.buildMatrix(transactions);
         var matrix = result.matrix;
         var indices = result.indices;
-        
+
         Helper.directMatrix(matrix);
         Helper.optimizeMatrix(matrix);
-        
+
         var balances = [];
+        var reverseIndices = _.invert(indices);
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] !== 0) {
-                    var fromId = _.findKey(indices, i);
-                    var toId = _.findKey(indices, j);
+                    var fromId = reverseIndices[i];
+                    var toId = reverseIndices[j];
                     var amount = matrix[i][j];
-                    
+
                     balances.push({
                             "from": fromId,
                             "to": toId,
@@ -163,7 +164,7 @@ router.get('/:id/balances', function (req, res) {
                 }
             }
         }
-        
+
         res.json(balances);
     });
 });

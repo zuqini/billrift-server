@@ -6,24 +6,24 @@ var Helper = {
         for (var i = 0; i < transactions.length; i++) {
             if (!indices[transactions[i].userFromId]) indices[transactions[i].userFromId] = id++;
             if (!indices[transactions[i].userToId]) indices[transactions[i].userToId] = id++;
-            
+
             var fromId = indices[transactions[i].userFromId];
             var toId = indices[transactions[i].userToId];
-            
+
             matrix[fromId] = matrix[fromId] || [];
-	    matrix[fromId][toId] = matrix[fromId][toId] || 0;
+	        matrix[fromId][toId] = matrix[fromId][toId] || 0;
             matrix[fromId][toId] += transactions[i].amount;
         }
 
-	for (i = 0; i < matrix.length; i++) {
-	    for (var j = 0; j < matrix[i].length; j++) {
-		matrix[i][j] = matrix[i][j] || 0;
-	    }
-	}
-        
+    	for (i = 0; i < matrix.length; i++) {
+    	    for (var j = 0; j < matrix[i].length; j++) {
+    		matrix[i][j] = matrix[i][j] || 0;
+    	    }
+    	}
+
         return {matrix, indices};
     },
-    
+
     directMatrix: function(matrix) {
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
@@ -41,7 +41,7 @@ var Helper = {
             }
         }
     },
-    
+
     hasDouble: function(matrix, i) {
         for (var j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] !== 0) {
@@ -60,7 +60,7 @@ var Helper = {
             has: false
         };
     },
-    
+
     addDebt: function(matrix, i, j, amount) {
         if (matrix[j][i] > 0) {
             matrix[j][i] -= amount;
@@ -72,7 +72,7 @@ var Helper = {
             matrix[i][j] += amount;
         }
     },
-    
+
     optimizeMatrix: function(matrix) {
         for (var i = 0; i < matrix.length; i++) {
             while (true) {
@@ -82,10 +82,10 @@ var Helper = {
                 var k = obj.k;
                 var x = matrix[i][j];
                 var y = matrix[j][k];
-    
+
                 matrix[i][j] = 0;
                 matrix[j][k] = 0;
-    
+
                 if (x > y) {
                     matrix[i][j] = x - y;
                     this.addDebt(matrix, i, k, y);
