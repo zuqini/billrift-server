@@ -49,7 +49,7 @@ router.get('/:id/users', function (req, res) {
 router.post('/:id/user', function (req, res) {
     var groupId = req.params.id;
     var email = req.body.email;
-    User.findOne({email: email}, function(err, user) {
+    User.findOneAndUpdate({email: email}, {$push: { groupIds : groupId }}, {new: true}, function(err, user) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
         if (!user) return res.status(404).json({ status: 404, error: 'User not found.'});
         var googleId = user.googleId;
