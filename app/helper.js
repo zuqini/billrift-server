@@ -15,8 +15,11 @@ var Helper = {
             matrix[fromId][toId] += transactions[i].amount;
         }
 
-    	for (i = 0; i < matrix.length; i++) {
-    	    for (var j = 0; j < matrix.length; j++) {
+        // id represents the number of users i.e. size of matrix
+        var length = id;
+
+    	for (i = 0; i < length; i++) {
+    	    for (var j = 0; j < length; j++) {
     		    matrix[i][j] = matrix[i][j] || 0;
     	    }
     	}
