@@ -156,9 +156,9 @@ router.get('/:id/balances', function (req, res) {
         for (var i = 0; i < matrix.length; i++) {
             for (var j = 0; j < matrix[i].length; j++) {
                 if (matrix[i][j] !== 0) {
-                    var fromId = reverseIndices[i];
-                    var toId = reverseIndices[j];
-                    var amount = matrix[i][j];
+                    var fromId = reverseIndices[j];
+                    var toId = reverseIndices[i];
+                    var amount = matrix[j][i];
 
                     balances.push({
                             "from": fromId,
