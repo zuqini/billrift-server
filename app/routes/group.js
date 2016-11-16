@@ -158,7 +158,7 @@ router.get('/:id/balances', function (req, res) {
                 if (matrix[i][j] !== 0) {
                     var fromId = reverseIndices[j];
                     var toId = reverseIndices[i];
-                    var amount = matrix[j][i];
+                    var amount = matrix[i][j];
 
                     balances.push({
                             "from": fromId,
