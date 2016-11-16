@@ -5,7 +5,7 @@ var Counter = require('./counter');
 
 var transactionSchema = new Schema({
     id: Number,
-    Title: String,
+    title: String,
     userFromId: String,
     userToId: String,
     amount: Number,
