@@ -140,11 +140,16 @@ router.get('/:id/balances', function (req, res) {
 	if(!transactions.length) return res.status(200).json([]);
 
         var result = Helper.buildMatrix(transactions);
+
+        console.log("built matrix", result);
+
         var matrix = result.matrix;
         var indices = result.indices;
 
         Helper.directMatrix(matrix);
         Helper.optimizeMatrix(matrix);
+
+        console.log("optimized and directed matrix", matrix);
 
         var balances = [];
         var reverseIndices = _.invert(indices);
