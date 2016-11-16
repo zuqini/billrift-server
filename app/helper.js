@@ -17,7 +17,12 @@ var Helper = {
 
     	for (i = 0; i < matrix.length; i++) {
     	    for (var j = 0; j < matrix[i].length; j++) {
-    		    matrix[i][j] = matrix[i][j] || 0;
+                console.log('ini 0', matrix[i][j]);
+    		    // matrix[i][j] = matrix[i][j] || 0;
+                if (!matrix[i][j] || matrix[i][j] <= 0) {
+                    console.log('set to 0');
+                    matrix[i][j] = 0;
+                }
     	    }
     	}
 
