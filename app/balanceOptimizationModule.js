@@ -1,4 +1,4 @@
-var Helper = {
+var BalanceOptimizationModule = {
     buildMatrix: function(transactions) {
         var matrix = [];
         var indices = {};
@@ -104,4 +104,4 @@ var Helper = {
     }
 };
 
-module.exports = Helper;
+module.exports = BalanceOptimizationModule;

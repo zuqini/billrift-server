@@ -5,7 +5,7 @@ var router = express.Router();
 var Group = require('../models/group');
 var User = require('../models/user');
 var Transaction = require('../models/transaction');
-var Helper = require('../helper');
+var BOM = require('../balanceOptimizationModule');
 
 router.post('/', function(req, res) {
     var name = req.body.name;
@@ -137,19 +137,19 @@ router.get('/:id/balances', function (req, res) {
     };
     Transaction.find(query, function(err, transactions) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
-	if(!transactions.length) return res.status(200).json([]);
+	    if(!transactions.length) return res.status(200).json([]);
 
-        var result = Helper.buildMatrix(transactions);
+        var result = BOM.buildMatrix(transactions);
 
-        console.log("built matrix", result);
+        // console.log("built matrix", result);
 
         var matrix = result.matrix;
         var indices = result.indices;
 
-        Helper.directMatrix(matrix);
-        Helper.optimizeMatrix(matrix);
+        BOM.directMatrix(matrix);
+        BOM.optimizeMatrix(matrix);
 
-        console.log("optimized and directed matrix", matrix);
+        // console.log("optimized and directed matrix", matrix);
 
         var balances = [];
         var reverseIndices = _.invert(indices);
