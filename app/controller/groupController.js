@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 var Group = require('../models/group');
 var User = require('../models/user');
 var Transaction = require('../models/transaction');
