@@ -9,6 +9,7 @@
 /config/files/local.js
 /config/files/local-*.js
 /config/db.js
+/tests/API/*.log
 /node_modules/*
 /public
 /tags

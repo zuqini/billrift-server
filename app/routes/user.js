@@ -21,7 +21,6 @@ router.post('/login', function(req, res) {
     User.findOneAndUpdate({googleId: req.user.googleId}, user,
         {upsert: true, new: true, setDefaultsOnInsert: true}, function(err) {
         if (err) return res.status(500).json({ status: 500, error: err.toString()});
-        console.log(user);
         return res.status(200).json({});
     });
 });
