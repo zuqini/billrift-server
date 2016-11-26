@@ -10,7 +10,7 @@ var Helper = require('../helper');
 router.post('/', function(req, res) {
     var name = req.body.name;
     if (!name) {
-        if (err) return res.status(400).json({ status: 400, error: "Missing group name."});
+        return res.status(400).json({ status: 400, error: "Missing group name."});
     }
 
     var group = {
