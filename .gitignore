@@ -8,6 +8,7 @@
 /log.xml
 /config/files/local.js
 /config/files/local-*.js
+/config/db.js
 /node_modules/*
 /public
 /tags
