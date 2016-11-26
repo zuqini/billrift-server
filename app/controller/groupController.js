@@ -7,6 +7,9 @@ var BOM = require('../balanceOptimizationModule');
 var _ = require('lodash');
 
 module.exports = {
+    /*
+     *  Create a new group for a user
+     */
     createGroup(req, res) {
         var name = req.body.name;
         if (!name) {
@@ -27,6 +30,10 @@ module.exports = {
             });
         });
     },
+
+    /*
+     *  Optimize transactions and return balances for a group
+     */
 	getBalances(req, res) {
         var groupId = req.params.id;
 
@@ -76,6 +83,9 @@ module.exports = {
         });
     },
 
+    /*
+     *  Get the list of transactions for a group identified by id
+     */
     getTransactions(req, res) {
         var groupId = req.params.id;
 
@@ -92,6 +102,9 @@ module.exports = {
         });
     },
 
+    /*
+     *  Get the list of users for a group identified by id
+     */
     getUsers(req, res) {
         var groupId = req.params.id;
         Group.findOne({id: groupId}, function(err, group) {
@@ -107,6 +120,9 @@ module.exports = {
         });
     },
 
+    /*
+     *  Add a new user to the group
+     */
     addUserToGroup(req, res) {
         var groupId = req.params.id;
         var email = req.body.email;
@@ -127,6 +143,9 @@ module.exports = {
         });
     },
 
+    /*
+     *  Add a new transaction to the group
+     */
     addTransactionToGroup(req, res) {
         var groupId = req.params.id;
         var userFromId = req.body.userFromId;
