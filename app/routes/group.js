@@ -4,24 +4,7 @@ var router = express.Router();
 var groupController = require('../controller/groupController');
 
 router.post('/', function(req, res) {
-    var name = req.body.name;
-    if (!name) {
-        return res.status(400).json({ status: 400, error: "Missing group name."});
-    }
-
-    var group = {
-        name: req.body.name,
-        userIds : [ req.user.googleId ]
-    };
-
-    Group.create(group, function(err, group) {
-        if (err) return res.status(500).json({ status: 500, error: err.toString()});
-
-        User.findOneAndUpdate({googleId: req.user.googleId}, {$push: { groupIds : group.id }}, {upsert: true}, function(err) {
-            if (err) return res.status(500).json({ status: 500, error: err.toString()});
-            res.status(200).json({});
-        });
-    });
+    return groupController.createGroup(req, res);
 });
 
 /*
