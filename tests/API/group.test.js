@@ -35,6 +35,16 @@ describe('GroupsRoute', function() {
 			});
 	});
 
+	it('should return error for improper /group POST', function(done) {
+		chai.request(app)
+			.post('/group/')
+			.send({'test1': 'test2'})
+			.end(function(err, res){
+				res.should.have.status(400);
+				done();
+			});
+	});
+
 	it('should not add existing to group', function(done) {
 		chai.request(app)
 			.post('/group/1/user')
@@ -42,6 +52,25 @@ describe('GroupsRoute', function() {
 			.send({email: 'test@test.test'})
 			.end(function(err, res){
 				res.should.have.status(500);
+				done();
+			});
+	});
+
+	it('should list all transactions for /group/:id/transactions GET', function(done) {
+		chai.request(app)
+			.get('/group/1/transactions')
+			.end(function(err, res){
+				// console.log(res.body);
+				res.body.should.be.a('array');
+				res.body.forEach(function(transaction) {
+					transaction.should.have.property('_id');
+					transaction.should.have.property('userFromId');
+					transaction.should.have.property('userToId');
+					transaction.should.have.property('amount');
+					transaction.should.have.property('groupId');
+					transaction.should.have.property('title');
+				});
+				res.should.have.status(200);
 				done();
 			});
 	});
@@ -98,6 +127,23 @@ describe('GroupsRoute', function() {
 				title: 'test'
 			}).end(function(err, res){
 				res.should.have.status(400);
+				done();
+			});
+	});
+
+	it('should list all balances for /group/1/transactions GET', function(done) {
+		chai.request(app)
+			.get('/group/1/balances')
+			.end(function(err, res){
+				// console.log(res.body);
+				res.body.should.be.a('array');
+				res.body.forEach(function(balance) {
+					balance.should.have.property('groupId');
+					balance.should.have.property('from');
+					balance.should.have.property('to');
+					balance.should.have.property('amount');
+				});
+				res.should.have.status(200);
 				done();
 			});
 	});
