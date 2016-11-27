@@ -8,6 +8,9 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var mongoose = require('mongoose');
+// Reference number: 2.2
+// Middleware
+// Parses HTTP request bodies to JSON
 var bodyParser = require('body-parser');
 
 var auth = require('./app/middlewares/auth');
