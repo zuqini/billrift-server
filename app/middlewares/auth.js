@@ -1,3 +1,9 @@
+/*
+auth.js
+Middleware
+Reference number: 2.1
+This describes the authentication that occurs before every API call gets routed
+*/
 var verifier = require('google-id-token-verifier');
 
 module.exports = function(req, res, next) {

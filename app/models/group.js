@@ -1,3 +1,9 @@
+/*
+group.js
+Model
+Reference number: 2.11
+This model represents a group, that contains one or more users
+*/
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

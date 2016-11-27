@@ -1,3 +1,10 @@
+/*
+groupController.js
+Controller
+Reference number: 2.8
+This file updates the database for the group-specific APIs,
+and also computes the balances
+*/
 var _ = require('lodash');
 
 var Group = require('../models/group');

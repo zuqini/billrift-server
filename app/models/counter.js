@@ -1,3 +1,10 @@
+/*
+counter.js
+Model
+Reference number: 2.13
+This model stores the to-be-created id values for certain models so they are all
+unique
+*/
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

@@ -1,3 +1,10 @@
+/*
+transaction.js
+Model
+Reference number: 2.12
+This model represents a transaction, that contains a debt paid from one user
+to another
+*/
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
