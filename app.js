@@ -1,3 +1,9 @@
+/*
+app.js
+API Gateway
+Reference number: 2.3
+This file sets up the application and listens for incoming API requests
+*/
 var express = require('express');
 var path = require('path');
 var app = express();
