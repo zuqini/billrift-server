@@ -1,3 +1,9 @@
+/*
+group.js
+Router
+Reference number: 2.6
+This router calls the proper controller function for each API endpoint in /group
+*/
 var express = require('express');
 var router = express.Router();
 

@@ -1,3 +1,9 @@
+/*
+user.js
+Router
+Reference number: 2.4
+This router calls the proper controller function for each API endpoint in /user
+*/
 var express = require('express');
 var router = express.Router();
 

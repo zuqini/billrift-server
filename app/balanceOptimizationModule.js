@@ -1,3 +1,10 @@
+/*
+balanceOptimizationModule.js
+Service
+Reference number: 2.9
+This service provides an interface through which the groups controller can
+easily generate the balances given a collection of transactions
+*/
 var BalanceOptimizationModule = {
     buildMatrix: function(transactions) {
         var matrix = [];
