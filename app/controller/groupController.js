@@ -4,7 +4,6 @@ var Group = require('../models/group');
 var User = require('../models/user');
 var Transaction = require('../models/transaction');
 var BOM = require('../balanceOptimizationModule');
-var _ = require('lodash');
 
 module.exports = {
     /*

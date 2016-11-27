@@ -1,8 +1,8 @@
+var _ = require('lodash');
+
 var Group = require('../models/group');
 var User = require('../models/user');
 var Transaction = require('../models/transaction');
-
-var _ = require('lodash');
 
 module.exports = {
 	login(req, res) {
