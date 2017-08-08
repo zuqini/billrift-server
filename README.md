@@ -1,5 +1,5 @@
 # BillRift Server
-The back-end of the BillRift app
+The back-end of the [BillRift app](https://github.com/andrew-zhou/billrift-app)
 
 ## How to run
 - Start the mongo db instance
